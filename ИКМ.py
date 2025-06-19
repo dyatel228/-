@@ -8,7 +8,6 @@ class Node:
         self.data = data
         self.left = None
         self.right = None
-        self.count = 1
 
 
 class Tree:
@@ -17,13 +16,8 @@ class Tree:
 
     def insert(self, node, data, path, index=0):
         if index == len(path):
-            if node.data == data:
-                node.count += 1
-            elif node.data != 0:
+            if node.data != 0:
                 raise ValueError(f"число {data} не помещается по пути {path}")
-            else:
-                node.data = data
-            return
 
         direction = path[index]
 
@@ -38,7 +32,6 @@ class Tree:
 
     def check_missing_nodes(self, data):
         paths = [path for _, path in data]
-        # Сортировка без sort()
         for i in range(len(paths)):
             for j in range(i + 1, len(paths)):
                 if paths[i] > paths[j]:
